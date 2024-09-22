@@ -42,6 +42,21 @@ def logout():
     return jsonify({"message": "Deslogado com sucesso"}), 200
 
 
+
+@app.route('/user', methods=['POST'])
+def create_user():
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
+
+    if username and password:
+        user =  User(username, password)
+        db.session.add(user)
+        db.session.commit()
+        return jsonify({"message": "usuario criado com sucesso"}), 201
+
+    return jsonify({"message": "dados invalidos"}), 400
+
 @app.route('/', methods=['GET'])
 def hello_world():
     return 'Hello, World!'
