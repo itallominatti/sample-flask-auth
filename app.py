@@ -98,9 +98,5 @@ def create_user():
 
     return jsonify({"message": "dados invalidos"}), 400
 
-@app.route('/', methods=['GET'])
-def hello_world():
-    return 'Hello, World!'
-
 if __name__ == '__main__':
     app.run(debug=True)
